@@ -7,7 +7,7 @@ from IPython.display import display
 from datetime import date
 
 today = date.today()
-my_api='oWUfgkRloUBUu6IyidikTOxs3JNa9OqPd5rbHxGE'
+my_api='YOUR API KEY HERE'
 
 def get_apod_data(api_key):
     raw_response = requests.get(f'https://api.nasa.gov/planetary/apod?api_key={api_key}').text
