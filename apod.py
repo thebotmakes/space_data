@@ -7,7 +7,7 @@ from IPython.display import display
 from datetime import date
 
 today = date.today()
-my_api='YOUR API KEY HERE' #insert the API you get from the NASA API site here
+my_api='oWUfgkRloUBUu6IyidikTOxs3JNa9OqPd5rbHxGE'
 
 def get_apod_data(api_key):
     raw_response = requests.get(f'https://api.nasa.gov/planetary/apod?api_key={api_key}').text
@@ -28,6 +28,9 @@ download_image(apod_data['url'], apod_data['date'])
 if apod_data['media_type'] == 'video':
     pass
 else:
+    with open("apod.txt", "w") as text_file:
+        print(apod_data['explanation'], file=text_file)
     file_name = apod_data['date'] + '.jpg'
     apod_img = Image.open(file_name)
     apod_img.save(r'apod.jpg')
+    
