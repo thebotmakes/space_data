@@ -10,7 +10,7 @@ from IPython.display import display
 from datetime import date
 import textwrap #this is just used to make the txt output a bit more readable
 
-my_api='oWUfgkRloUBUu6IyidikTOxs3JNa9OqPd5rbHxGE' #replace the bit in the quotes with the API key you get by signing up at https://api.nasa.gov
+my_api='YOUR API KEY HERE' #replace the bit in the quotes with the API key you get by signing up at https://api.nasa.gov
 
 # the next two functions are taken straight from NASA's API guide - just an amazing resource! The first one gets the json data, the second gets the image.
 
