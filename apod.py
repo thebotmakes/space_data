@@ -1,3 +1,4 @@
+
 # first we import all the libraries we need
 
 import requests
@@ -7,8 +8,9 @@ import os
 from PIL import Image
 from IPython.display import display
 from datetime import date
+import textwrap #this is just used to make the txt output a bit more readable
 
-my_api='YOUR API KEY HERE' #replace the bit in the quotes with the API key you get by signing up at https://api.nasa.gov
+my_api='oWUfgkRloUBUu6IyidikTOxs3JNa9OqPd5rbHxGE' #replace the bit in the quotes with the API key you get by signing up at https://api.nasa.gov
 
 # the next two functions are taken straight from NASA's API guide - just an amazing resource! The first one gets the json data, the second gets the image.
 
@@ -20,7 +22,7 @@ def get_apod_data(api_key):
 def download_image(url, date):
     if os.path.isfile(f'{date}.png') == False:
         raw_image = requests.get(url).content
-        with open(f'{date}.jpg', 'wb') as file:
+        with open(f'apod.jpg', 'wb') as file:
             file.write(raw_image)
             
     else:
@@ -33,8 +35,7 @@ if apod_data['media_type'] == 'video':
     pass # this is a catch so we don't get errors if the file type is a video instead of a picture
 else:
     with open("apod.txt", "w") as text_file:
-        print(apod_data['explanation'], file=text_file) # this writes the 'explanation' field from the json data into a text file called apod.txt 
-    file_name = apod_data['date'] + '.jpg'
+        print(textwrap.fill(apod_data['explanation'], 60), file=text_file) # this writes the 'explanation' field from the json data into a text file called apod.txt 
+    file_name = 'apod.jpg'
     apod_img = Image.open(file_name)
-    apod_img.save(r'apod.jpg') # these three lines open the image and save it as a jpg file
-    
+    apod_img.save(r'apod.jpg') # these three lines open the image and save it as a jpg file    
